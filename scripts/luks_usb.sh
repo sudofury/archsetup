@@ -23,9 +23,7 @@ success() { cprint ${GREEN} "${1}\n"; }
 
 # Display instructions.
 show_help() {
-	msg     "\nUsage: ${0} [option...] {--create|--link|--help}\n"
-	error   "WARNING! Do not run this script as a root!"
-	echo -e "This script requires sudo rights, but should be run as a non-root user.\n"
+	msg     "usage: ${0} [--create] [--link] [--help]\n"
 	msg     "--create    creates a LUKS partition that spans the entire drive"
 	echo    "            Required arguments: <drive> <label>"
 	echo    "            Example: ${0} --create /dev/sda backup"
@@ -40,8 +38,8 @@ show_help() {
 
 # Show warning if run as a root.
 if [ "$EUID" -eq 0 ]; then
-	error   "Do not run this script as a root!"
-	echo -e "This script requires sudo rights, but should be run as a non-root user."
+	error   "Do not run this script as a root user!"
+	echo -e "This script requires superuser rights, but should be run as a non-root user."
 	exit
 fi
 
@@ -66,7 +64,7 @@ case "${1}" in
 		exit 0
 		;;
 		--link)
-		
+		echo "not done yet"
 		;;
 		*) show_help && exit 0 ;;
 	esac
